@@ -12,7 +12,7 @@ import io.swagger.v3.oas.models.info.Info;
 public class SwaggerConfig {
 
 	@Bean
-	public OpenAPI customOpenApi() {
+	OpenAPI customOpenApi() {
 		return new OpenAPI().components(new Components()).info(new Info().title("API para controle de produtos")
 				.description("Projeto desenvolvido com Spring Boot e Spring Data JPA").version("v1"));
 

@@ -22,14 +22,9 @@ public class ValidationExceptionHandler extends ResponseEntityExceptionHandler {
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatusCode status, WebRequest request) {
 
-		// Criando o dto que irá retornar a resposta de erros
-
 		ErrorResponseDto dto = new ErrorResponseDto();
 		dto.setStatus(HttpStatus.BAD_REQUEST);
 		dto.setErrors(new ArrayList<String>());
-
-		// pegando os erros gerados pelo BeanValidation
-		// e armazena-los no objeto da classe DTO
 
 		for (FieldError error : ex.getBindingResult().getFieldErrors()) {
 			dto.getErrors().add(error.getField() + ": " + error.getDefaultMessage());
@@ -37,7 +32,6 @@ public class ValidationExceptionHandler extends ResponseEntityExceptionHandler {
 		for (ObjectError error : ex.getBindingResult().getGlobalErrors()) {
 			dto.getErrors().add(error.getObjectName() + ": " + error.getDefaultMessage());
 		}
-		// retornando o conteudo dos erros
 		return handleExceptionInternal(ex, dto, headers, dto.getStatus(), request);
 
 	}

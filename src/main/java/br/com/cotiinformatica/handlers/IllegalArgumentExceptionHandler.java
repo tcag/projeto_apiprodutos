@@ -12,7 +12,7 @@ import br.com.cotiinformatica.dtos.ErrorResponseDto;
 
 @ControllerAdvice
 public class IllegalArgumentExceptionHandler {
-	@ExceptionHandler(IllegalArgumentException.class) // erro que será capturado
+	@ExceptionHandler(IllegalArgumentException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ResponseBody
 	public ErrorResponseDto handleIllegalArgumentException(IllegalArgumentException e) {
